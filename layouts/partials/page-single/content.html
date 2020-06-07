@@ -7,7 +7,9 @@
       {{.}}
     </span>
     {{ end }}
-    {{ partial "page-single/post-meta.html" . }}
+    {{ if $.Parent.Params.includePostHeader }}
+      {{ partial "page-single/post-meta.html" . }}
+    {{ end }}
   </header>
   {{ $tableOfContents := .TableOfContents }}
   {{ with .Site.Params.toc }}
@@ -26,7 +28,9 @@
   <div class="post">
     {{ .Content }}
   </div>
-  {{ partial "page-single/post-navigation.html" . }}
-  {{ partial "page-single/post-related.html" . }}
-  {{ partial "page-single/post-comment.html" . }}
+  {{ if $.Parent.Params.includePostFooter }}
+    {{ partial "page-single/post-navigation.html" . }}
+    {{ partial "page-single/post-related.html" . }}
+    {{ partial "page-single/post-comment.html" . }}
+  {{ end }}
 </article>
